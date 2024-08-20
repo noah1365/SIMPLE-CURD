@@ -13,7 +13,17 @@ export const createProduct = async(req,res)=>{
         return res.status(201).json({success:true,data:newProduct});
     } catch (error) {
         console.log("Error in creating product",error.message);
-        res.status(500).json({success:false,message:"Internal Server error"})
+        res.status(500).json({success:false,message:"Internal Server error"});
+    }
+}
+
+export const getProduct = async(req,res)=>{
+    try {
+        const products = await Product.find({});
+        res.status(200).json({success:true,data:products});
+    } catch (error) {
+        console.log("Error in fetching product",error.message);
+        res.status(500).json({success:false,message:"Internal Server error"});
     }
 }
 
